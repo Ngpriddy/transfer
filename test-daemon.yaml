@@ -1,4 +1,4 @@
-# SOURCE: https://install.portworx.com/?mc=false&kbver=1.19.6&oem=esse&user=1b5e944b-7220-11eb-a2c5-c24e499c7467&b=true&j=auto&c=px-cluster-b85a62aa-fc3a-40a2-9eac-c6c67a8fb164&stork=true&lh=true&st=k8s
+# SOURCE: https://install.portworx.com/?mc=false&kbver=1.19.6&oem=esse&user=1b5e944b-7220-11eb-a2c5-c24e499c7467&b=true&j=auto&c=px-cluster-b85a62aa-fc3a-40a2-9eac-c6c67a8fb164&stork=true&lh=true&st=k8s&e=PX_HTTP_PROXY%3D214.9.94.210%3A8080%2CPX_HTTPS_PROXY%3D214.9.94.210%3A8080
 ---
 kind: Service
 apiVersion: v1
@@ -324,7 +324,7 @@ metadata:
   labels:
     name: portworx
   annotations:
-    portworx.com/install-source: "https://install.portworx.com/?mc=false&kbver=1.19.6&oem=esse&user=1b5e944b-7220-11eb-a2c5-c24e499c7467&b=true&j=auto&c=px-cluster-b85a62aa-fc3a-40a2-9eac-c6c67a8fb164&stork=true&lh=true&st=k8s"
+    portworx.com/install-source: "https://install.portworx.com/?mc=false&kbver=1.19.6&oem=esse&user=1b5e944b-7220-11eb-a2c5-c24e499c7467&b=true&j=auto&c=px-cluster-b85a62aa-fc3a-40a2-9eac-c6c67a8fb164&stork=true&lh=true&st=k8s&e=PX_HTTP_PROXY%3D214.9.94.210%3A8080%2CPX_HTTPS_PROXY%3D214.9.94.210%3A8080"
 spec:
   selector:
     matchLabels:
@@ -362,7 +362,11 @@ spec:
           env:
             - name: "PX_TEMPLATE_VERSION"
               value: "v4"
-            
+            - name: "PX_HTTP_PROXY"
+              value: "214.9.94.210:8080"
+            - name: "PX_HTTPS_PROXY"
+              value: "214.9.94.210:8080"
+
           livenessProbe:
             periodSeconds: 30
             initialDelaySeconds: 840 # allow image pull in slow networks
